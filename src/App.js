@@ -1,19 +1,23 @@
-import React from "react"
+import React, { useState, useContext } from "react"
 import axios from 'axios';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 
 import Navbar from './components/Navbar/Navbar';
 import ListProduct from './components/Product/ListProduct';
 import SlideShow from './components/SlideShow/SlideShow';
-import Product from './Product/'
-
+import Product from './pages/Product/'
+import Login from "./pages/Login";
+import MyContextProvider, { MyContext } from "./context/MyContext"
+import UserProfile from "./components/UserProfile/UserProfile"
 function App() {
-  const [product, setProducts] = React.useState([]);
+  const [product, setProducts] = useState([]);
+  const { rootState, logoutUser } = useContext(MyContext);
+  const { isAuth, theUser, showLogin } = rootState;
   const fetchProducts = async () => {
 
-    axios.get('http://192.168.0.249/ecommerce/').then(res => {
+    axios.get('http://192.168.0.249/ecommerce/fetchproduct.php').then(res => {
       setProducts(res.data);
     }
     )
@@ -31,18 +35,44 @@ function App() {
     <div>
 
       <Router>
-        <Navbar />
+
         <Switch>
 
-          <Route exact path="/">
+          <Route exact path="/" render={() => (
+            <div>
+              <Navbar />
+              <SlideShow />
+              <ListProduct product={product} />
+            </div>
+          )} />
 
-            <SlideShow />
-            <ListProduct product={product} />
-          </Route>
 
 
 
-          <Route exact path='/product' component={Product} />
+          <Route exact path="/product" render={() => (
+            <div>
+              <Navbar />
+              <Product />
+            </div>
+          )} />
+
+          <Route exact path="/login" render={() => (
+            <div>
+              <Navbar />
+              {console.log(isAuth+"login")}
+              {isAuth ? <Redirect to="/profile" /> : <Login />}
+            </div>
+          )} />
+
+
+          <Route exact path="/profile" render={() => (
+            <div>
+              <Navbar />
+              {console.log(isAuth)}
+              {isAuth ? <UserProfile /> : <Redirect to="/login" />}
+
+            </div>
+          )} />
         </Switch>
 
         <Footer />

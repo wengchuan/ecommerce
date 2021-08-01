@@ -47,7 +47,7 @@ function Navbar() {
                 </Tooltip>
               </NavLink>
 
-              <NavLink to="/">
+              <NavLink to="/login">
                 <Tooltip title="Login/Sign Up">
                   <IconButton aria-label="Login/Sign Up">
                     <AccountCircle />
