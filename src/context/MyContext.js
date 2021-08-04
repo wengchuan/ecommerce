@@ -18,7 +18,12 @@ class MyContextProvider extends Component{
     state = {
         showLogin:true,
         isAuth:false,
-        theUser:null,
+        theUser:{
+            user_name:null,
+            user_email:null,
+            user_role:"guest",
+        },
+        
     }
     
     // Toggle between Login & Signup page
@@ -35,7 +40,13 @@ class MyContextProvider extends Component{
         localStorage.removeItem('loginToken');
         this.setState({
             ...this.state,
-            isAuth:false
+            isAuth:false,
+            theUser:{
+                user_name:null,
+                user_email:null,
+                user_role:"guest",
+            },
+            
         })
     }
 
@@ -65,23 +76,23 @@ class MyContextProvider extends Component{
 
     // Checking user logged in or not
     isLoggedIn = async () => {
-        console.log("asdasd")
+     
         const loginToken = localStorage.getItem('loginToken');
         
         // If inside the local-storage has the JWT token
         if(loginToken){
-            console.log("token")
+            
             //Adding JWT token to axios default header
             Axios.defaults.headers.common['Authorization'] = 'bearer '+loginToken;
-            console.log("123")
+           
             // Fetching the user information
             const {data} = await Axios.get('user-info.php');
            
-            var str = JSON.stringify(data);
-            console.log("data:"+str)
+           
+          
             // If user information is successfully received
             if(data.success && data.user){
-                console.log("asdasd1`23")
+                
                 this.setState({
                     ...this.state,
                     isAuth:true,
@@ -93,6 +104,7 @@ class MyContextProvider extends Component{
         }
     }
 
+  
     render(){
         const contextValue = {
             rootState:this.state,

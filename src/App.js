@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 import axios from 'axios';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 
 import Navbar from './components/Navbar/Navbar';
@@ -11,6 +11,11 @@ import Product from './pages/Product/'
 import Login from "./pages/Login";
 import MyContextProvider, { MyContext } from "./context/MyContext"
 import UserProfile from "./components/UserProfile/UserProfile"
+import Admin from "./components/Admin"
+import ManageProduct from "./components/Admin/ManageProduct"
+import ProductDetail from "./pages/ProductDetail"
+import Contact from "./components/Contact"
+import AboutUs from "./components/AboutUs"
 function App() {
   const [product, setProducts] = useState([]);
   const { rootState, logoutUser } = useContext(MyContext);
@@ -28,7 +33,16 @@ function App() {
     fetchProducts();
 
   }, []);
-
+  const checkAdmin = () => {
+    if (theUser.user_role == "admin") {
+      return (<div className="d-flex flex-row-reverse">
+        <Link style={{ color: "grey" }} className="nav-link" to='/admin'>Admin Page</Link>
+      </div>)
+    }
+    else {
+      return null
+    }
+  }
 
   return (
 
@@ -40,6 +54,8 @@ function App() {
 
           <Route exact path="/" render={() => (
             <div>
+              {checkAdmin()}
+              
               <Navbar />
               <SlideShow />
               <ListProduct product={product} />
@@ -55,11 +71,24 @@ function App() {
               <Product />
             </div>
           )} />
+             <Route exact path="/About" render={() => (
+            <div>
+              <Navbar />
+              <AboutUs />
+            </div>
+          )} />
+
+          <Route  path="/product/:productID" render={() => (
+            <div>
+              <Navbar />
+              <ProductDetail />
+            </div>
+          )} />
 
           <Route exact path="/login" render={() => (
             <div>
               <Navbar />
-              {console.log(isAuth+"login")}
+
               {isAuth ? <Redirect to="/profile" /> : <Login />}
             </div>
           )} />
@@ -67,15 +96,40 @@ function App() {
 
           <Route exact path="/profile" render={() => (
             <div>
+              {checkAdmin()}
               <Navbar />
-              {console.log(isAuth)}
+
               {isAuth ? <UserProfile /> : <Redirect to="/login" />}
 
+            </div>
+          )} />
+
+          <Route exact path="/admin" render={() => (
+            <div>
+              {theUser.user_role == "admin" ? <Admin /> : <Redirect to="/" />}
+
+            </div>
+          )} />
+
+          <Route exact path="/admin/manage" render={() => (
+            <div>
+              {theUser.user_role == "admin" ? <div><Admin /> </div> : <Redirect to="/" />}
+
+            </div>
+          )} />
+    <Route exact path="/Contact" render={() => (
+            <div>
+              
+              
+              <Navbar />
+              <Contact />
             </div>
           )} />
         </Switch>
 
         <Footer />
+
+
       </Router>
 
 

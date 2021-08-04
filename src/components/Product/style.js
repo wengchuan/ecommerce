@@ -17,6 +17,12 @@ export default makeStyles(() => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'space-between',
+   
     
   },
+  productName:{
+    color:"black",
+    textDecoration:"none",
+  }
+ 
 }));

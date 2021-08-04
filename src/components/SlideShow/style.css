@@ -1,3 +1,11 @@
 .carousel-inner .item {
     height: 800px;
 }
+
+.carousel-control-prev-icon {
+    background-color: rgb(100, 20, 20);
+}
+
+.carousel-control-next-icon {
+    background-color: rgb(100, 20, 20);
+}

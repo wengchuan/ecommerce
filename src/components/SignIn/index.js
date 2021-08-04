@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 
 
 function SignIn() {
-    console.log("qweqwe")
+    
     const { loginUser, isLoggedIn } = useContext(MyContext);
     
     const initialState = {
