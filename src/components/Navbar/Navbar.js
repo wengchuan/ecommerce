@@ -3,7 +3,7 @@ import React from 'react'
 import { Badge, IconButton, Tooltip } from '@material-ui/core';
 import { AccountCircle, ShoppingCart } from '@material-ui/icons'
 import { NavLink } from 'react-router-dom';
-import logo from './logo.jpeg'
+import logo from './logo.png'
 
 
 function Navbar() {
@@ -47,7 +47,7 @@ function Navbar() {
                 </Tooltip>
               </NavLink>
 
-              <NavLink to="/">
+              <NavLink to="/login">
                 <Tooltip title="Login/Sign Up">
                   <IconButton aria-label="Login/Sign Up">
                     <AccountCircle />

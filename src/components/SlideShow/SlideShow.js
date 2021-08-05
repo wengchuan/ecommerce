@@ -1,5 +1,5 @@
 import React from 'react'
-import slide1 from './slide4.jpeg'
+import slide1 from './slide1.jpeg'
 import slide2 from './slide5.jpeg'
 import slide3 from './slide6.jpeg'
 import './style.css'
@@ -12,17 +12,17 @@ function SlideShow() {
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item active" data-bs-interval="2000">
             <img src={slide1} alt="slide1" className="d-block w-100" />
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" data-bs-interval="2000">
             <img src={slide2} alt="slide2" className="d-block w-100"  />
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" data-bs-interval="2000">
             <img src={slide3}  alt="slide3" className="d-block w-100" />
           </div>
         </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev"  >
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>

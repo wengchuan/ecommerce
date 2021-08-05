@@ -5,10 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js';
+import MyContextProvider from "./context/MyContext"
 
 ReactDOM.render(
   <React.StrictMode >
+    <MyContextProvider> 
     <App />
+    </MyContextProvider> 
     </React.StrictMode>,
     document.getElementById('root')
 );
