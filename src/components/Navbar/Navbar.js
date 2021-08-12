@@ -37,7 +37,7 @@ function Navbar() {
               <NavLink className="nav-link" to="/Contact" >Contact Us</NavLink>
               <NavLink className="nav-link" to="/About">About Us</NavLink>
 
-              <NavLink to="/">
+              <NavLink to="/Cart">
                 <Tooltip title="Show Cart items">
                   <IconButton aria-label="Show Cart items">
                     <Badge badgeContent={0} color="secondary">

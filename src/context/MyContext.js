@@ -19,6 +19,7 @@ class MyContextProvider extends Component{
         showLogin:true,
         isAuth:false,
         theUser:{
+            uid:null,
             user_name:null,
             user_email:null,
             user_role:"guest",
@@ -56,12 +57,32 @@ class MyContextProvider extends Component{
         const register = await Axios.post('register.php',{
             name:user.name,
             email:user.email,
-            password:user.password 
+            phone:user.phone,
+            password:user.password,
+            cpassword:user.cpassword,
+            address:user.address,
+            zip:user.zip,
+            city:user.city,
+            state:user.state,
+           
         });
 
         return register.data;
     }
 
+    AddCart = async (userID,productID,cart_quantity) => {
+
+        
+        // Sending the user registration request
+        const add = await Axios.post('http://localhost/ecommerce/addtocart.php',{
+            uid:userID,
+            pid:productID,
+            cart_quantity:cart_quantity
+        });
+
+        return add.data;
+    }
+ 
 
     loginUser = async (user) => {
 
@@ -112,7 +133,8 @@ class MyContextProvider extends Component{
             isLoggedIn:this.isLoggedIn,
             registerUser:this.registerUser,
             loginUser:this.loginUser,
-            logoutUser:this.logoutUser
+            logoutUser:this.logoutUser,
+            AddCart:this.AddCart
         }
         return(
             <MyContext.Provider value={contextValue}>

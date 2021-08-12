@@ -1,15 +1,15 @@
 import axios from 'axios'
-import React, {useContext ,useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './style.css'
 import { MyContext } from '../../context/MyContext.js'
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect,Link } from 'react-router-dom';
 
 
 
 function SignIn() {
-    
+
     const { loginUser, isLoggedIn } = useContext(MyContext);
-    
+
     const initialState = {
         userInfo: {
             email: '',
@@ -37,24 +37,24 @@ function SignIn() {
         event.preventDefault();
         const data = await loginUser(state.userInfo);
         if (data.success && data.token) {
-            
+
             setState({
                 ...initialState,
                 successMsg: data.message
             });
             localStorage.setItem('loginToken', data.token);
             await isLoggedIn();
-            
 
-            
+
+
         }
         else {
-            
+
             setState({
                 ...state,
                 successMsg: '',
                 errorMsg: data.message
-                
+
             });
         }
     }
@@ -78,6 +78,7 @@ function SignIn() {
 
 
                 <div className="content">
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login </p>
                     <form onSubmit={signinSubmit}>
                         <div className="form-group">
                             <label for="login_email">Email address</label>
@@ -88,16 +89,24 @@ function SignIn() {
                             <label for="InputPassword">Password</label>
                             <input name="password" type="password" required className="form-control" onChange={handleInput} value={state.userInfo.password} id="InputPassword" placeholder="Password" />
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" for="exampleCheck1">Remember me </label>
-                        </div>
-                        {errorMsg}
-                        {successMsg}
-                        <button type="submit" className="btn btn-primary">Submit</button>
                         <div className="form-group">
                             <small>Forget Password</small>
                         </div>
+                        {errorMsg}
+                        {successMsg}
+                        <br/>
+                        <div className="text-center">
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </div>
+                        <br/>
+                        
+                        <div className="text-center">
+                        <Link className="link-primary" exact to="/Register" style={{color:"grey" }}>
+                            <p>SIGN UP NOW</p>
+                            </Link>
+                        </div>
+                      
+
                     </form>
                 </div>
             </div>
