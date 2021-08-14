@@ -15,7 +15,7 @@ function UserProfile() {
     const [userinfo, setUser] = useState([]); 
     const [state, setState] = useState({});
 
-
+    
     // On Submit the Registration Form
         const updateinfo = async (event) => {
             event.preventDefault();
@@ -29,25 +29,27 @@ function UserProfile() {
                 zip:state.user_zip,
                 city:state.user_city,
                 state:state.user_state,
+                uid:state.uid,
                
             });
-            console.log(update.data)
-            // if (data.success) {
-            //     Swal.fire({
-            //         title: 'Profile updated',
-            //         text: "Profile updated",
-            //         type: 'success',
+       
+            if (update.data.success) {
+                Swal.fire({
+                    title: 'Profile updated',
+                    text: "Profile updated",
+                    type: 'success',
     
-            //     });
-            // }
-            // else {
-            //     Swal.fire({
-            //         title: 'Failed',
-            //         text: "Failed to update profile",
-            //         type: 'error',
+                });
+                fectuserinfo();
+            }
+            else {
+                Swal.fire({
+                    title: 'Failed',
+                    text: "Failed to update profile",
+                    type: 'error',
     
-            //     });
-            // }
+                });
+            }
         }
 
 
