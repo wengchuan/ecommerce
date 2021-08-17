@@ -40,7 +40,7 @@ const CartItem = ({ cartItem,DeteleItem }) => {
                 <IconButton onClick={()=>DeteleItem(cartItem.id)}>
                   <DeleteIcon></DeleteIcon>
                 </IconButton>
-              </div>
+              </div> 
 
             </div>
 

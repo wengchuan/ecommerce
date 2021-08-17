@@ -40,7 +40,7 @@ const CartList = () => {
           setCart(res.data);
         })
 
-
+ 
       }
 
     }

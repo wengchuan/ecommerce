@@ -16,7 +16,7 @@ function UserProfile() {
     const [state, setState] = useState({});
 
     
-    // On Submit the Registration Form
+
         const updateinfo = async (event) => {
             event.preventDefault();
            
@@ -64,7 +64,7 @@ function UserProfile() {
         }
         
     const fectuserinfo = async () => {
-    
+     
         const loginToken = localStorage.getItem('loginToken');
         const Axios = axios.create({
             baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
@@ -188,7 +188,7 @@ function UserProfile() {
 
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                                            <button type="submit" className="btn btn-primary">Add</button>
+                                            <button type="submit" className="btn btn-primary">Change</button>
                                         </div>
                                     </form>
                                 </div>
