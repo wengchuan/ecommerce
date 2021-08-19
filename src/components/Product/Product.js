@@ -7,7 +7,7 @@ import useStyles from './style';
 function Product({product,handleAddToCart}) {
     const classes = useStyles();
 
-    return (
+    return ( 
        <Card className={classes.root}>
            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none',color:"black" }}>
            <CardMedia className={classes.media} image={"http://192.168.0.249/ecommerce/image/"+product.picture} title ={product.name} />

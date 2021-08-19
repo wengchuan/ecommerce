@@ -19,13 +19,15 @@ import Contact from "./components/Contact"
 import AboutUs from "./components/AboutUs"
 import Cart from "./components/Cart"
 import Register from "./components/Register";
+import Search from "./pages/search";
+import CheckOut from "./components/CheckOut"
 function App() {
   const [product, setProducts] = useState([]);
   const { rootState, logoutUser, AddCart } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const [cartItem, setCart] = useState([]);
-  const [user,setUser] = useState([]);
-  
+  const [user, setUser] = useState([]);
+
   const fetchProducts = async () => {
 
     axios.get('http://192.168.0.249/ecommerce/fetchproduct.php').then(res => {
@@ -36,10 +38,10 @@ function App() {
   };
 
   React.useEffect(() => {
-    
+
     fetchProducts();
     fectCartItem();
-    
+
   }, []);
   const checkAdmin = () => {
     if (theUser.user_role == "admin") {
@@ -70,56 +72,56 @@ function App() {
     }
   }
 
- 
+
 
 
 
   const fectCartItem = async () => {
-    
-     
-      const loginToken = localStorage.getItem('loginToken');
-      const Axios = axios.create({
-        baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
+
+
+    const loginToken = localStorage.getItem('loginToken');
+    const Axios = axios.create({
+      baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
     });
-      // If inside the local-storage has the JWT token
-      if(loginToken){
-    
-          //Adding JWT token to axios default header
-          Axios.defaults.headers.common['Authorization'] = 'bearer '+loginToken;
-         
-          // Fetching the user information
-          const {data} = await Axios.get('user-info.php');
-         
-         
-        
-          // If user information is successfully received
-          if(data.success && data.user){
-            
-            console.log("asdasdzxc"+data.user.uid)
-            await  axios.get('http://192.168.0.249/ecommerce/fetchcart.php', {
-              params: {
-                uid:data.user.uid
-              }
-            }).then(res => {
-              setCart(res.data);
-            })
-             
-              
+    // If inside the local-storage has the JWT token
+    if (loginToken) {
+
+      //Adding JWT token to axios default header
+      Axios.defaults.headers.common['Authorization'] = 'bearer ' + loginToken;
+
+      // Fetching the user information
+      const { data } = await Axios.get('user-info.php');
+
+
+
+      // If user information is successfully received
+      if (data.success && data.user) {
+
+        console.log("asdasdzxc" + data.user.uid)
+        await axios.get('http://192.168.0.249/ecommerce/fetchcart.php', {
+          params: {
+            uid: data.user.uid
           }
-  
+        }).then(res => {
+          setCart(res.data);
+        })
+
+
       }
 
-   
-     
-      
+    }
 
-    
+
+
+
+
+
   }
 
   return (
 
     <div>
-      
+
       <Router>
 
         <Switch>
@@ -127,7 +129,7 @@ function App() {
           <Route exact path="/" render={() => (
             <div>
               {checkAdmin()}
-             
+
               <Navbar />
               <SlideShow />
               <ListProduct product={product} handleAddToCart={handleAddToCart} />
@@ -154,6 +156,20 @@ function App() {
             <div>
               <Navbar />
               <ProductDetail handleAddToCart={handleAddToCart} />
+            </div>
+          )} />
+
+          <Route path="/result" render={() => (
+            <div>
+              <Navbar />
+              <Search handleAddToCart={handleAddToCart} />
+            </div>
+          )} />
+
+  <Route path="/checkout" render={() => (
+            <div>
+              <Navbar />
+              <CheckOut />
             </div>
           )} />
 
@@ -202,7 +218,7 @@ function App() {
 
 
               <Navbar />
-              <Cart cartItem={cartItem}/>
+              <Cart cartItem={cartItem} />
             </div>
           )} />
           <Route exact path="/Register" render={() => (
@@ -210,7 +226,7 @@ function App() {
 
 
               <Navbar />
-              <Register/>
+              <Register />
             </div>
           )} />
         </Switch>

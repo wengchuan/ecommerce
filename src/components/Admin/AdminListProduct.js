@@ -5,15 +5,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 const ListProduct = ({product,fetchProducts}) => {
  
-
-    console.log(product)
     
     const DeleteProduct = async (productID) => {
      
         Swal.fire({
             title: 'Do you want to Delete product?',
             showDenyButton: true,
-            showCancelButton: true,
+           
             confirmButtonText: `Yes`,
             denyButtonText: `No`,
           }).then( async (result) => {

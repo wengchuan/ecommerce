@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { MyContext } from "../../context/MyContext"
 import Cart from './CartItem';
 import useStyles from './style';
+import {loadStripe} from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_live_51JP9voBriOGseYlOdpnWpseH1Ra5mYsEBdXyj3SN1nOoB2QZsMB8Qf3a4njs71RfKhORrTv3Pe73qZh5G23rjFXI0027YlDx6o")
 
 const CartList = () => {
 
@@ -91,6 +94,10 @@ const CartList = () => {
 
 
 
+
+
+  let y = Math.round(cartItem.reduce((total, cartItem) => total += Number(cartItem.price) * Number(cartItem.cart_quantity), 0) * 100) / 100;
+
   const renderEmptyCart = () => (
     <Typography variant="subtitle1">You have no items in your shopping cart,
       <Link className={classes.link} to="/">start adding some</Link>!
@@ -98,7 +105,7 @@ const CartList = () => {
   );
 
 
-
+ 
   const renderCart = () => (
     <>
      
@@ -110,12 +117,13 @@ const CartList = () => {
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal:RM {Math.round(cartItem.reduce((total, cartItem) => total += Number(cartItem.price) * Number(cartItem.cart_quantity), 0) * 100) / 100}</Typography>
+        <Typography variant="h4">Subtotal:RM {y}</Typography>
         {console.log(Number(cartItem[0].cart_quantity))}
         <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" >Empty cart</Button>
-          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
-        </div>
+         <Link to={{pathname:'/checkout',aboutProps:{totalCost:y}}}>
+          <Button className={classes.checkoutButton}   size="large" type="button" variant="contained" color="primary">Checkout</Button>
+          </Link>
+          </div>
       </div>
     </>
   );
