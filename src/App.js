@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-ro
 import Swal from 'sweetalert2'
 import Footer from './components/Footer/Footer';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar'; 
 import ListProduct from './components/Product/ListProduct';
 import SlideShow from './components/SlideShow/SlideShow';
 import Product from './pages/Product/'
@@ -21,9 +21,10 @@ import Cart from "./components/Cart"
 import Register from "./components/Register";
 import Search from "./pages/search";
 import CheckOut from "./components/CheckOut"
+import PaymentComplete from "./components/CheckOut/PaymentComplete"
 function App() {
   const [product, setProducts] = useState([]);
-  const { rootState, logoutUser, AddCart } = useContext(MyContext);
+  const { rootState, logoutUser, AddCart,isLoggedIn } = useContext(MyContext);
   const { isAuth, theUser, showLogin } = rootState;
   const [cartItem, setCart] = useState([]);
   const [user, setUser] = useState([]);
@@ -41,6 +42,7 @@ function App() {
 
     fetchProducts();
     fectCartItem();
+    
 
   }, []);
   const checkAdmin = () => {
@@ -53,6 +55,8 @@ function App() {
       return null
     }
   }
+
+
 
   const AddToCart = async (userID, productID, cart_quantity) => {
     const add = await AddCart(userID, productID, cart_quantity);
@@ -176,7 +180,7 @@ function App() {
           <Route exact path="/login" render={() => (
             <div>
               <Navbar />
-
+             
               {isAuth ? <Redirect to="/profile" /> : <Login />}
             </div>
           )} />
@@ -227,6 +231,12 @@ function App() {
 
               <Navbar />
               <Register />
+            </div>
+          )} />
+           <Route exact path="/payment_complete" render={() => (
+            <div>
+              <Navbar />
+              <PaymentComplete />
             </div>
           )} />
         </Switch>

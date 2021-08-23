@@ -13,6 +13,7 @@ const CartList = () => {
 
 
   const [cartItem, setCart] = useState([]);
+  const [id,setId] = useState({});
   const fectCartItem = async () => {
 
 
@@ -34,7 +35,7 @@ const CartList = () => {
       // If user information is successfully received
       if (data.success && data.user) {
 
-        
+        setId(data.user.uid)
         await axios.get('http://192.168.0.249/ecommerce/fetchcart.php', {
           params: {
             uid: data.user.uid
@@ -120,7 +121,7 @@ const CartList = () => {
         <Typography variant="h4">Subtotal:RM {y}</Typography>
         {console.log(Number(cartItem[0].cart_quantity))}
         <div>
-         <Link to={{pathname:'/checkout',aboutProps:{totalCost:y}}}>
+         <Link to={{pathname:'/checkout',state:{totalCost:y,cartItem:cartItem,uid:id}}}>
           <Button className={classes.checkoutButton}   size="large" type="button" variant="contained" color="primary">Checkout</Button>
           </Link>
           </div>

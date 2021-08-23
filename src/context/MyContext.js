@@ -123,6 +123,11 @@ class MyContextProvider extends Component{
             }
 
         }
+        else{
+            this.setState({
+            isAuth:false,
+            })
+        }
     }
 
   

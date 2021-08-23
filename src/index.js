@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js';
-// import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+
 import MyContextProvider from "./context/MyContext"
 
 ReactDOM.render(
