@@ -21,7 +21,10 @@ import Cart from "./components/Cart"
 import Register from "./components/Register";
 import Search from "./pages/search";
 import CheckOut from "./components/CheckOut"
+import CreditCard from "./components/CheckOut/CreditCard"
+import Fpx from "./components/CheckOut/Fpx"
 import PaymentComplete from "./components/CheckOut/PaymentComplete"
+import Order from "./components/Order";
 function App() {
   const [product, setProducts] = useState([]);
   const { rootState, logoutUser, AddCart,isLoggedIn } = useContext(MyContext);
@@ -146,7 +149,7 @@ function App() {
           <Route exact path="/product" render={() => (
             <div>
               <Navbar />
-              <Product />
+              <Product handleAddToCart={handleAddToCart} />
             </div>
           )} />
           <Route exact path="/About" render={() => (
@@ -174,6 +177,18 @@ function App() {
             <div>
               <Navbar />
               <CheckOut />
+            </div>
+          )} />
+          <Route path="/credit_card" render={() => (
+            <div>
+              <Navbar />
+              <CreditCard />
+            </div>
+          )} />
+                <Route path="/fpx" render={() => (
+            <div>
+              <Navbar />
+              <Fpx />
             </div>
           )} />
 
@@ -209,7 +224,13 @@ function App() {
 
             </div>
           )} />
-          <Route exact path="/Contact" render={() => (
+             <Route exact path="/admin/order" render={() => (
+            <div>
+              {theUser.user_role == "admin" ? <div><Admin /> </div> : <Redirect to="/" />}
+
+            </div>
+          )} />
+          <Route exact path="/contact" render={() => (
             <div>
 
 
@@ -217,7 +238,7 @@ function App() {
               <Contact />
             </div>
           )} />
-          <Route exact path="/Cart" render={() => (
+          <Route exact path="/cart" render={() => (
             <div>
 
 
@@ -225,7 +246,7 @@ function App() {
               <Cart cartItem={cartItem} />
             </div>
           )} />
-          <Route exact path="/Register" render={() => (
+          <Route exact path="/register" render={() => (
             <div>
 
 
@@ -237,6 +258,12 @@ function App() {
             <div>
               <Navbar />
               <PaymentComplete />
+            </div>
+          )} />
+             <Route exact path="/order" render={() => (
+            <div>
+              <Navbar />
+              <Order />
             </div>
           )} />
         </Switch>

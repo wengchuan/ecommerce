@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
   next();
 }); 
 app.post("/create-payment-intent", async (req, res) => {
-
+ 
   const { items } = req.body;
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -44,5 +44,32 @@ app.post("/create-payment-intent", async (req, res) => {
     clientSecret: paymentIntent.client_secret
   });
 });
+
+app.post("/create-fpx-intent", async (req, res) => {
+ 
+  const { items } = req.body;
+  // Create a PaymentIntent with the order amount and currency
+try{
+  const paymentIntent = await stripe.paymentIntents.create({
+    payment_method_types: ['fpx'],
+    amount: calculateOrderAmount(items),
+    currency: 'myr',
+  });
+
+
+  res.send({
+    clientSecret: paymentIntent.client_secret
+  });
+}catch(e){
+  return res.status(400).send({
+    error: {
+      message: e.message,
+    },
+  });
+}
+
+
+});
+
 
 app.listen(4242, () => console.log('Node server listening on port 4242!'));

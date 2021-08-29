@@ -7,7 +7,6 @@ const  SearchListProduct = ({  handleAddToCart }) => {
     const location = useLocation()
     const { product } = location.state
     const classes = useStyles();
-    console.log(product)
     const renderProduct =()=>(
         <Grid container justify="center" spacing={3}>
                 {product.map((product)=>(

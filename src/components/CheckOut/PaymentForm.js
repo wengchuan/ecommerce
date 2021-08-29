@@ -83,22 +83,8 @@ export default function CheckoutForm({totalCost,cartItem,uid}) {
   
   var pid = cartItem.map((cartItem) => cartItem.id);
   var quantity = cartItem.map((cartItem) => cartItem.cart_quantity);
-
-  const AddOrder = async ()=>{
-   console.log(uid)
       
 
-  
-
-    // return(
-    // <Redirect
-    //   to={{
-    //     pathname: "/payment_complete",
-    //     state: {succeeded:succeeded,}
-    //   }}
-    // />
-    // )
-  }
 
   return (
     
@@ -128,7 +114,12 @@ export default function CheckoutForm({totalCost,cartItem,uid}) {
       )}
        </form>
       {/* Show a success message upon completion */}
-    {/* {succeeded ? null: null } */}
+    {succeeded ?  <Redirect
+      to={{
+        pathname: "/payment_complete",
+        state: {succeeded:succeeded,}
+      }}
+    />: null }
       
    
     </div>

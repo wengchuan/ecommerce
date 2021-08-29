@@ -9,13 +9,12 @@ import Swal from 'sweetalert2'
 
 function UserProfile() {
 
-    const { rootState, logoutUser } = useContext(MyContext);
+    const { rootState, logoutUser,isLoggedIn } = useContext(MyContext);
     const { isAuth, theUser, showLogin } = rootState;
 
     const [userinfo, setUser] = useState([]); 
     const [state, setState] = useState({});
 
-    
 
         const updateinfo = async (event) => {
             event.preventDefault();
@@ -90,7 +89,7 @@ function UserProfile() {
         }
     }
     useEffect(() => {
-
+        isLoggedIn();
         fectuserinfo();
     }, []);
 

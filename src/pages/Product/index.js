@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import ListProduct from "../../components/Product/ListProduct"
-function Product() {
+function Product({handleAddToCart}) {
     const [product, setProducts] =React.useState([]);
     const fetchProducts = async () => {
       
@@ -20,7 +20,7 @@ function Product() {
 
     return (
         <div>
-            <ListProduct product={product}/>
+            <ListProduct product={product} handleAddToCart={handleAddToCart}/>
         </div>
     )
 }

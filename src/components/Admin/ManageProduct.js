@@ -2,9 +2,11 @@ import React, { useState, useRef,useEffect } from 'react'
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import AdminListProduct from'./AdminListProduct'
+import { withRouter } from 'react-router';
 function ManageProduct() {
     const [product, setProducts] = useState([]);
     const [update,setUpdate]=useState([]);
+    
     const fetchProducts = async () => {
 
         axios.get('http://192.168.0.249/ecommerce/fetchproduct.php').then(res => {
@@ -190,4 +192,4 @@ function ManageProduct() {
     )
 }
 
-export default ManageProduct
+export default withRouter(ManageProduct)

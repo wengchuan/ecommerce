@@ -16,7 +16,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
     },[]);
 
 
-    console.log(product)
+  
     const onChangeValue = (e) => {
         setState({
             ...state,
@@ -29,8 +29,6 @@ function Product({ product, DeleteProduct,fetchProducts}) {
     
     const updateproduct = async (event) => {
         event.preventDefault();
-       
-        console.log(state)
         if (ref.current.files[0]==null){
 
             const fd = new FormData();
@@ -62,7 +60,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
             }
         }
         else{
-            console.log(ref.current.files[0])
+          
             const fd = new FormData();
             fd.append('name', state.name);
             fd.append('price', state.price);
@@ -165,7 +163,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="title">User Information</h5>
+                                <h5 className="modal-title" id="title">Update Product</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">

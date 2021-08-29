@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 const ListProduct = ({product,fetchProducts}) => {
  
     
-    const DeleteProduct = async (productID) => {
+    const DeleteProduct = async (productID) => { 
      
         Swal.fire({
             title: 'Do you want to Delete product?',

@@ -1,12 +1,14 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link,useLocation  } from 'react-router-dom';
 import HouseIcon from '@material-ui/icons/House';
 import CreateIcon from '@material-ui/icons/Create';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import SideBar from './sidebar'
 import ManageProduct from './ManageProduct';
-function index() {
-    
+import ManageOrder from './ManageOrder';
+function Index() {
+    const location = useLocation();
+   
     return (
 
         <div className="container-fluid">
@@ -44,11 +46,9 @@ function index() {
                                 </div>
                             )} />
 
-                            <Route exact path="/admin/manage" render={() => (
-                                <div>
-                                    <ManageProduct />
-                                </div>
-                            )} />
+                            {location.pathname=="/admin/manage"? <ManageProduct />:null}
+                            
+                            {location.pathname=="/admin/order"? <ManageOrder />:null}
                         </Switch>
                     </Router>
 
@@ -59,4 +59,4 @@ function index() {
     )
 }
 
-export default index
+export default Index

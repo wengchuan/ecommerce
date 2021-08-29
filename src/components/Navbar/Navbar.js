@@ -81,7 +81,7 @@ function Navbar() {
             <NavLink className="nav-link" exact to="/Product" >Product</NavLink>
             <NavLink className="nav-link" to="/Contact" >Contact Us</NavLink>
             <NavLink className="nav-link" to="/About">About Us</NavLink>
-
+            <NavLink className="nav-link" to="/order">Order</NavLink>
             <NavLink to="/Cart">
               <Tooltip title="Show Cart items">
                 <IconButton aria-label="Show Cart items">
