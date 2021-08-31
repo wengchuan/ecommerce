@@ -32,6 +32,7 @@ function OrderList(orderItem) {
             const fd = new FormData();
             fd.append('status', state.status);
             fd.append('oid', state.oid);
+            fd.append('tracking_number',state.tracking_number);
             
             const update = await axios.post('http://192.168.0.249/ecommerce/updateorder.php',fd);
        
@@ -44,7 +45,9 @@ function OrderList(orderItem) {
                 });
                 setState2({
                     ...state2,
-                    status:state.status
+                    status:state.status,
+                    tracking_number:state.tracking_number
+                    
                 })
             }
             else {
@@ -74,16 +77,17 @@ function OrderList(orderItem) {
                                     </IconButton>
                                 </Tooltip>
                                 <p>Order Status:{ state2.status} </p>
-
+                                <p>Tracking Number: { state2.tracking_number} </p>
                             </div>
                             <h4>Order ID: {orderItem.orderItem[0].oid} </h4>
                             <h4>User ID: {orderItem.orderItem[0].uid} </h4>
                             <p>User Name: {orderItem.orderItem[0].user_name} </p>
+                            <p>User Email: {orderItem.orderItem[0].user_email} </p>
                             <p>User Phone Number: {orderItem.orderItem[0].user_phone} </p>
                             <p>User Address: {orderItem.orderItem[0].user_address+","+orderItem.orderItem[0].user_zip+" "+orderItem.orderItem[0].user_city+","+orderItem.orderItem[0].user_state} </p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <p>Order Time :{orderItem.orderItem[0].time} </p>
-
+                              
                             </div>
                             {orderItem.orderItem.map((orderItem) => (
 
@@ -120,7 +124,11 @@ function OrderList(orderItem) {
                                             <option value="Cancelled">Cancelled</option>
                                             <option value="Order Returned">Order Returned</option>
                                         </select>
-                                       
+                                     
+                                    </div>
+                                    <div className="mb-3">
+                                        <label for="tracking_number" className="col-form-label">Tracking Number:</label>
+                                       <input type="text" className="form-control" id="tracking_number" name="tracking_number" value={state.tracking_number} onChange={onChangeValue} />
                                     </div>
 
 

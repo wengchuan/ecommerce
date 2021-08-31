@@ -9,61 +9,113 @@ import Swal from 'sweetalert2'
 
 function UserProfile() {
 
-    const { rootState, logoutUser,isLoggedIn } = useContext(MyContext);
+    const { rootState, logoutUser, isLoggedIn } = useContext(MyContext);
     const { isAuth, theUser, showLogin } = rootState;
 
-    const [userinfo, setUser] = useState([]); 
-    const [state, setState] = useState({});
+    const [userinfo, setUser] = useState([]);
+    const [state, setState] = useState({ });
+    const[password,setPassword] =useState({ });
 
 
-        const updateinfo = async (event) => {
-            event.preventDefault();
-           
-           
-            const update = await axios.post('http://192.168.0.249/ecommerce/updateuserinfo.php',{
-                name:state.user_name,
-                email:state.user_email,
-                phone:state.user_phone,
-                address:state.user_address,
-                zip:state.user_zip,
-                city:state.user_city,
-                state:state.user_state,
-                uid:state.uid,
-               
+    const updateinfo = async (event) => {
+        event.preventDefault();
+
+
+        const update = await axios.post('http://192.168.0.249/ecommerce/updateuserinfo.php', {
+            name: state.user_name,
+            email: state.user_email,
+            phone: state.user_phone,
+            address: state.user_address,
+            zip: state.user_zip,
+            city: state.user_city,
+            state: state.user_state,
+            uid: state.uid,
+
+        });
+
+        if (update.data.success) {
+            Swal.fire({
+                title: 'Profile updated',
+                text: "Profile updated",
+                type: 'success',
+
             });
-       
-            if (update.data.success) {
-                Swal.fire({
-                    title: 'Profile updated',
-                    text: "Profile updated",
-                    type: 'success',
-    
-                });
-                fectuserinfo();
-            }
-            else {
-                Swal.fire({
-                    title: 'Failed',
-                    text: "Failed to update profile",
-                    type: 'error',
-    
-                });
-            }
+            fectuserinfo();
         }
+        else {
+            Swal.fire({
+                title: 'Failed',
+                text: "Failed to update profile",
+                type: 'error',
 
-
-        const onChangeValue = (e) => {
-            setState({
-                ...state,
-             [e.target.name]: e.target.value
-                    
-                
             });
-            
         }
-        
+    }
+
+    const updatepassword = async (event) => {
+        event.preventDefault();
+        if(password.new_password==password.cnew_password){
+
+        const update = await axios.post('http://192.168.0.249/ecommerce/updatepassword.php', {
+            old_password: password.old_password,
+            password: password.new_password,
+            uid: state.uid,
+
+        });
+
+        if (update.data.success) {
+            Swal.fire({
+                title: 'Password Updated',
+                text: "Password updated",
+                type: 'success',
+
+            });
+            fectuserinfo();
+        }
+        else {
+
+            Swal.fire({
+                title: 'Failed',
+                text: update.data.message,
+                type: 'error',
+
+            });
+        }
+    }
+    else{
+        Swal.fire({
+            title: 'Confirm password is not correct',
+            text: "Please enter correct confirm password!",
+            type: 'error',
+
+        });
+    }
+
+    }
+
+
+    const onChangeValue = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+
+
+        });
+
+    }
+    const onChangeValue2 = (e) => {
+        setPassword({
+            ...password,
+            [e.target.name]: e.target.value
+
+
+        });
+
+    }
+
+
     const fectuserinfo = async () => {
-     
+
         const loginToken = localStorage.getItem('loginToken');
         const Axios = axios.create({
             baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
@@ -113,7 +165,8 @@ function UserProfile() {
                                 <div className=" d-flex flex-row"> <p className="text-muted ">City:</p> <p> {userinfo.user_city}</p>   </div>
                                 <div className=" d-flex flex-row "> <p className="text-muted ">Zip Code:</p> <p> {userinfo.user_zip}</p>   </div>
                                 <div className=" d-flex flex-row "> <p className="text-muted ">State: </p> <p>{userinfo.user_state}</p>   </div>
-                                <button type="button" className="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#changeuserinfo">Change </button>
+                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeuserinfo">Change account information </button>
+                                <button type="button" className="btn btn-primary mt-3 " data-bs-toggle="modal" data-bs-target="#changepassword">Change Password </button>
 
                             </div>
                         </div>
@@ -184,6 +237,45 @@ function UserProfile() {
                                             </select>
 
                                         </div>
+
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                                            <button type="submit" className="btn btn-primary">Change</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* popup window */}
+                <div>
+
+
+                    <div className="modal fade" id="changepassword" tabindex="-1" aria-labelledby="changepassword" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="title">Change Password</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <form onSubmit={updatepassword} >
+                                        <div className="mb-3">
+                                            <label > Old Password</label>
+                                            <input name="old_password" type="password" required className="form-control" onChange={onChangeValue2} placeholder="Enter Old password"/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>New Password</label>
+                                            <input name="new_password" required type="password" className="form-control"  onChange={onChangeValue2} placeholder="Enter new password" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Confirm New Password</label>
+                                            <input name="cnew_password" required type="password" className="form-control"  onChange={onChangeValue2} placeholder="Enter new password again" />
+                                        </div>
+                                       
 
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>

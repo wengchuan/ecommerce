@@ -230,6 +230,12 @@ function App() {
 
             </div>
           )} />
+            <Route exact path="/admin/user" render={() => (
+            <div>
+              {theUser.user_role == "admin" ? <div><Admin /> </div> : <Redirect to="/" />}
+
+            </div>
+          )} />
           <Route exact path="/contact" render={() => (
             <div>
 

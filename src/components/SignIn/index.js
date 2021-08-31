@@ -89,9 +89,7 @@ function SignIn() {
                             <label for="InputPassword">Password</label>
                             <input name="password" type="password" required className="form-control" onChange={handleInput} value={state.userInfo.password} id="InputPassword" placeholder="Password" />
                         </div>
-                        <div className="form-group">
-                            <small>Forget Password</small>
-                        </div>
+                      
                         {errorMsg}
                         {successMsg}
                         <br/>
