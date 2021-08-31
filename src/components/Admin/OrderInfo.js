@@ -13,7 +13,7 @@ const OrderInfo = ({ orderItem}) => {
 
             <div class="d-flex">
               <div className="flex-shrink-0">
-                <img src={"http://192.168.0.249/ecommerce/image/" + orderItem.picture} alt={orderItem.name} width="200" className="ml-lg-5 order-1 order-lg-2" />
+                <img src={"http://34.92.49.138/ecommerce/image/" + orderItem.picture} alt={orderItem.name} width="200" className="ml-lg-5 order-1 order-lg-2" />
 
               </div>
               <div className="d-flex align-items-lg-center flex-row flex-lg-row p-3 w-75 p-3">

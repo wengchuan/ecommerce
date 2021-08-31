@@ -34,7 +34,7 @@ function Product({ user, DeleteUser,fetchUser}) {
             fd.append('password', state.password);
             fd.append('uid', user.uid);
             
-            const update = await axios.post('http://192.168.0.249/ecommerce/updateuser.php',fd);
+            const update = await axios.post('http://34.92.49.138/ecommerce/updateuser.php',fd);
        
             if (update.data.success) {
                 Swal.fire({

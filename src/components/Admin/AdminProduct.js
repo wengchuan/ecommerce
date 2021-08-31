@@ -39,7 +39,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
             fd.append('category', state.category);
             fd.append('id', state.id);
             
-            const update = await axios.post('http://192.168.0.249/ecommerce/updateproduct.php',fd);
+            const update = await axios.post('http://34.92.49.138/ecommerce/updateproduct.php',fd);
        
             if (update.data.success) {
                 Swal.fire({
@@ -71,7 +71,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
             fd.append('category', state.category);
             fd.append('id', state.id);
             
-            const update = await axios.post('http://192.168.0.249/ecommerce/updateproduct.php',fd);
+            const update = await axios.post('http://34.92.49.138/ecommerce/updateproduct.php',fd);
        
             if (update.data.success) {
                 Swal.fire({
@@ -106,7 +106,7 @@ function Product({ product, DeleteProduct,fetchProducts}) {
 
                         <div class="d-flex">
                             <div className="flex-shrink-0">
-                                <img src={"http://192.168.0.249/ecommerce/image/" + product.picture} alt={product.name} width="200" className="ml-lg-5 order-1 order-lg-2" />
+                                <img src={"http://34.92.49.138/ecommerce/image/" + product.picture} alt={product.name} width="200" className="ml-lg-5 order-1 order-lg-2" />
 
                             </div>
                             <div className="d-flex align-items-lg-center flex-row flex-lg-row p-3 w-75 p-3">

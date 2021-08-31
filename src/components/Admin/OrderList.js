@@ -34,7 +34,7 @@ function OrderList(orderItem) {
             fd.append('oid', state.oid);
             fd.append('tracking_number',state.tracking_number);
             
-            const update = await axios.post('http://192.168.0.249/ecommerce/updateorder.php',fd);
+            const update = await axios.post('http://34.92.49.138/ecommerce/updateorder.php',fd);
        
             if (update.data.success) {
                 Swal.fire({

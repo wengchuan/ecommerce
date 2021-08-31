@@ -15,7 +15,7 @@ function Index() {
 
     const fetchOrder = async () => {
 
-        axios.get('http://192.168.0.249/ecommerce/fetchallorder.php').then(res => {
+        axios.get('http://34.92.49.138/ecommerce/fetchallorder.php').then(res => {
             setOrder(res.data);
         })
     };

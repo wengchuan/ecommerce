@@ -31,7 +31,7 @@ function ProductCard({handleAddToCart}) {
 
         const fetchProductsDetail = async () => {
 
-            await axios.get('http://192.168.0.249/ecommerce/fetchproductdetail.php', { params: { productID } }).then(res => {
+            await axios.get('http://34.92.49.138/ecommerce/fetchproductdetail.php', { params: { productID } }).then(res => {
                 setProductDetail(res.data);
             }
             )
@@ -49,7 +49,7 @@ function ProductCard({handleAddToCart}) {
                 <div className="row g-0">
                     <div className="col-md-6 border-end">
                         <div className="d-flex flex-column justify-content-center">
-                            <div className="main_image"> <img src={"http://192.168.0.249/ecommerce/image/" + ProductDetail[0].picture} id="main_product_image" width="350" /> </div>
+                            <div className="main_image"> <img src={"http://34.92.49.138/ecommerce/image/" + ProductDetail[0].picture} id="main_product_image" width="350" /> </div>
 
                         </div>
                     </div>

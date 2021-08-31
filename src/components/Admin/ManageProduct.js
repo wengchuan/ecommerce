@@ -9,7 +9,7 @@ function ManageProduct() {
     
     const fetchProducts = async () => {
 
-        axios.get('http://192.168.0.249/ecommerce/fetchproduct.php').then(res => {
+        axios.get('http://34.92.49.138/ecommerce/fetchproduct.php').then(res => {
             setProducts(res.data);
             setUpdate(res.data);
         }
@@ -56,7 +56,7 @@ function ManageProduct() {
        
 
 
-        axios.post('http://192.168.0.249/ecommerce/addproduct.php', fd
+        axios.post('http://34.92.49.138/ecommerce/addproduct.php', fd
         ).then(res => {
           
             //Success alert

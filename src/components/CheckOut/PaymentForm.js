@@ -71,7 +71,7 @@ export default function CheckoutForm({totalCost,cartItem,uid}) {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      const add = await axios.post('http://localhost/ecommerce/addorder.php',{
+      const add = await axios.post('http://34.92.49.138/ecommerce/addorder.php',{
           uid:uid,
           pid:pid,
           cart_quantity:quantity,

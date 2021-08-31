@@ -11,7 +11,7 @@ function ManageProduct() {
     
     const fetchUser = async () => {
 
-        axios.get('http://192.168.0.249/ecommerce/fetchuser.php').then(res => {
+        axios.get('http://34.92.49.138/ecommerce/fetchuser.php').then(res => {
             setUser(res.data);
             setUpdate(res.data);
         }
@@ -47,7 +47,7 @@ function ManageProduct() {
        
 
 
-    //     axios.post('http://192.168.0.249/ecommerce/addproduct.php', fd
+    //     axios.post('http://34.92.49.138/ecommerce/addproduct.php', fd
     //     ).then(res => {
           
     //         //Success alert

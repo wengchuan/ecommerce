@@ -4,7 +4,7 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-    baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
+    baseURL: 'http://34.92.49.138/ecommerce/php-login-registration-api/',
 });
 
 class MyContextProvider extends Component{
@@ -74,7 +74,7 @@ class MyContextProvider extends Component{
 
         
         // Sending the user registration request
-        const add = await Axios.post('http://localhost/ecommerce/addtocart.php',{
+        const add = await Axios.post('http://34.92.49.138/ecommerce/addtocart.php',{
             uid:userID,
             pid:productID,
             cart_quantity:cart_quantity

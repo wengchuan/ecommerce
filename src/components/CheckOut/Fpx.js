@@ -19,7 +19,7 @@ export default function Checkout() {
 
     const loginToken = localStorage.getItem('loginToken');
     const Axios = axios.create({
-      baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
+      baseURL: 'http://34.92.49.138/ecommerce/php-login-registration-api/',
     });
     // If inside the local-storage has the JWT token
     if (loginToken) {
@@ -36,7 +36,7 @@ export default function Checkout() {
       if (data.success && data.user) {
 
         setId(data.user.uid)
-        await axios.get('http://192.168.0.249/ecommerce/fetchcart.php', {
+        await axios.get('http://34.92.49.138/ecommerce/fetchcart.php', {
           params: {
             uid: data.user.uid
           }

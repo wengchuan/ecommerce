@@ -10,7 +10,7 @@ function SearchProduct({product,handleAddToCart}) {
     return (
        <Card className={classes.root}>
            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none',color:"black" }}>
-           <CardMedia className={classes.media} image={"http://192.168.0.249/ecommerce/image/"+product.picture} title ={product.name} />
+           <CardMedia className={classes.media} image={"http://34.92.49.138/ecommerce/image/"+product.picture} title ={product.name} />
            <CardContent>
                <div className={classes.CardContent}>
                    <Typography variant="h5" gutterBottom className={classes.productName}>

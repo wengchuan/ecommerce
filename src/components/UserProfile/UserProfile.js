@@ -21,7 +21,7 @@ function UserProfile() {
         event.preventDefault();
 
 
-        const update = await axios.post('http://192.168.0.249/ecommerce/updateuserinfo.php', {
+        const update = await axios.post('http://34.92.49.138/ecommerce/updateuserinfo.php', {
             name: state.user_name,
             email: state.user_email,
             phone: state.user_phone,
@@ -56,7 +56,7 @@ function UserProfile() {
         event.preventDefault();
         if(password.new_password==password.cnew_password){
 
-        const update = await axios.post('http://192.168.0.249/ecommerce/updatepassword.php', {
+        const update = await axios.post('http://34.92.49.138/ecommerce/updatepassword.php', {
             old_password: password.old_password,
             password: password.new_password,
             uid: state.uid,
@@ -118,7 +118,7 @@ function UserProfile() {
 
         const loginToken = localStorage.getItem('loginToken');
         const Axios = axios.create({
-            baseURL: 'http://localhost/ecommerce/php-login-registration-api/',
+            baseURL: 'http://34.92.49.138/ecommerce/php-login-registration-api/',
         });
         // If inside the local-storage has the JWT token
         if (loginToken) {

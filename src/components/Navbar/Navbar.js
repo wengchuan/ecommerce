@@ -24,7 +24,7 @@ function Navbar() {
   const handleSearch = async (event) => {
     event.preventDefault();
 
-    await axios.get('http://192.168.0.249/ecommerce/searchproduct.php', {
+    await axios.get('http://34.92.49.138/ecommerce/searchproduct.php', {
       params: {
         search: state.search
       }

@@ -16,7 +16,7 @@ const UserList = ({user,fetchUser}) => {
             denyButtonText: `No`,
           }).then( async (result) => {
             if (result.value) {
-                const deleteUser =  await axios.get('http://192.168.0.249/ecommerce/deleteuser.php', {
+                const deleteUser =  await axios.get('http://34.92.49.138/ecommerce/deleteuser.php', {
                     params: {
           
                       uid: userID

@@ -16,7 +16,7 @@ const ListProduct = ({product,fetchProducts}) => {
             denyButtonText: `No`,
           }).then( async (result) => {
             if (result.value) {
-                const deleteProduct =  await axios.get('http://192.168.0.249/ecommerce/deleteproduct.php', {
+                const deleteProduct =  await axios.get('http://34.92.49.138/ecommerce/deleteproduct.php', {
                     params: {
           
                       id: productID
