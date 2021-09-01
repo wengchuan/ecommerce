@@ -13,8 +13,10 @@ function OrderList(orderItem) {
           <li className="list-group-item">
           <div className="float-end">
               <p>Order Status:{orderItem.orderItem[0].status} </p>
+    
               </div>
             <h4>Order ID: {orderItem.orderItem[0].oid} </h4>
+            <p>Tracking Number :{orderItem.orderItem[0].tracking_number} </p> 
             <div className="d-flex flex-row bd-highlight mb-3">
               <p>Order Time :{orderItem.orderItem[0].time} </p>
              
