@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 
 function Register() {
     const { toggleNav, registerUser } = useContext(MyContext);
+    const [message,setMessage] = useState({errorMsg:'',successMsg:''})
     const initialState = {
         userInfo: {
             name: '',
@@ -16,9 +17,7 @@ function Register() {
             city:'',
             state:'',
 
-        },
-        errorMsg: '',
-        successMsg: '',
+        }
     }
     const [state, setState] = useState(initialState);
 
@@ -26,18 +25,32 @@ function Register() {
     const submitForm = async (event) => {
         event.preventDefault();
         const data = await registerUser(state.userInfo);
-        console.log(state.userInfo)
+        
         if (data.success) {
             setState({
-                ...initialState,
-                successMsg: data.message,
+                ...initialState
             });
+            setMessage({
+                ...message,
+                successMsg:data.message,
+                errorMsg:''
+            })
         }
         else {
             setState({
-                ...state,
+                ...state
+            });
+            setMessage({
+                ...message,
                 successMsg: '',
                 errorMsg: data.message
+            });
+            Swal.fire({
+                type: "error",
+                title: 'Error',
+                text: message.errorMsg,
+              
+    
             });
         }
     }
@@ -56,22 +69,16 @@ function Register() {
     // Show Message on Success or Error
     let successMsg = '';
     let errorMsg = '';
-    if (state.errorMsg) {
-        errorMsg = <div className="error-msg">{state.errorMsg}</div>;
-        Swal.fire({
-            type: "error",
-            title: 'Error',
-            text: state.errorMsg,
-          
-
-        });
+    if (message.errorMsg) {
+        errorMsg = <div className="error-msg">{message.errorMsg}</div>;
+      
 
     }
-    if (state.successMsg) {
-        successMsg = <div className="success-msg">{state.successMsg}</div>;
+    else if (message.successMsg) {
+        successMsg = <div className="success-msg">{message.successMsg}</div>;
         Swal.fire({
             title: 'Registered Account',
-            text: state.successMsg,
+            text: message.successMsg,
             type: 'success',
 
         });
