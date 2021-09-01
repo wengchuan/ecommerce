@@ -17,7 +17,7 @@ function OrderList(orderItem) {
             <h4>Order ID: {orderItem.orderItem[0].oid} </h4>
             <div className="d-flex flex-row bd-highlight mb-3">
               <p>Order Time :{orderItem.orderItem[0].time} </p>
-             
+              <p>Order Time :{orderItem.orderItem[0].time} </p>
             </div>
             {orderItem.orderItem.map((orderItem) => (
 
