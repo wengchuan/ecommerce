@@ -46,7 +46,7 @@ function ManageOrder() {
     }).then(res => {
       setOrder(res.data);
     })
-console.log(value)
+
 
   }
 

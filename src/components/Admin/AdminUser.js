@@ -30,7 +30,7 @@ function Product({ user, DeleteUser,fetchUser}) {
        
 
             const fd = new FormData();
-            console.log( state.password)
+            
             fd.append('password', state.password);
             fd.append('uid', user.uid);
             

@@ -117,7 +117,7 @@ const CartList = () => {
       </Grid>
       <div className={classes.cardDetails}>
         <Typography variant="h4">Subtotal:RM {y}</Typography>
-        {console.log(Number(cartItem[0].cart_quantity))}
+        
         <div>
          <Link to={{pathname:'/checkout',state:{totalCost:y,cartItem:cartItem,uid:id}}}>
           <Button className={classes.checkoutButton}   size="large" type="button" variant="contained" color="primary">Checkout</Button>

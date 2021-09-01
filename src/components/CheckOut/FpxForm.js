@@ -5,7 +5,7 @@ import StatusMessages, { useMessages } from './StatusMessages';
 import axios from "axios";
 
 const FpxForm = ({ totalCost, cartItem, uid }) => {
-    console.log(totalCost)
+    
     const stripe = useStripe();
     const elements = useElements();
     const [messages, addMessage] = useMessages();
@@ -143,7 +143,7 @@ const FpxReturn = () => {
                     }).then(res => {
                         setCart(res.data);
                         fetched=true;
-                        console.log("asdasdasd")
+                        
                     })
 
 

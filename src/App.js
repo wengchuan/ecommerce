@@ -104,7 +104,7 @@ function App() {
       // If user information is successfully received
       if (data.success && data.user) {
 
-        console.log("asdasdzxc" + data.user.uid)
+        
         await axios.get('http://34.92.49.138/ecommerce/fetchcart.php', {
           params: {
             uid: data.user.uid

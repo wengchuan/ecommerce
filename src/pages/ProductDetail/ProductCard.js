@@ -67,7 +67,7 @@ function ProductCard({handleAddToCart}) {
                             <Button type="button" size="small" onClick={() => increment()}>+</Button>
                             </div>
                             <h3>RM {ProductDetail[0].price}</h3>
-                            {console.log(ProductDetail[0])}
+                           
 
 
                             <div className="buttons d-flex flex-row mt-5 gap-3"><button className="btn btn-dark" onClick={()=> handleAddToCart(ProductDetail[0].id,quantity)}>Add to Cart</button> </div>

@@ -26,7 +26,7 @@ function OrderList(orderItem) {
  
 
     const updateorder = async (event) => {
-        console.log(state.status)
+        
         event.preventDefault();
 
             const fd = new FormData();

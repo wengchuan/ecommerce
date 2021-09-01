@@ -48,7 +48,7 @@ const Index =()=> {
     
         fetchOrder();
       }, []);
-      console.log(orderItem);
+     
 
 
     const renderOrder = () => (
