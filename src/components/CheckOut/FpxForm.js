@@ -23,7 +23,7 @@ const FpxForm = ({ totalCost, cartItem, uid }) => {
         }
 
         let { error: backendError, clientSecret } = await fetch(
-            'http://localhost:4242/create-fpx-intent',
+            'http://34.92.49.138:4242/create-fpx-intent',
             {
                 method: 'POST',
                 headers: {

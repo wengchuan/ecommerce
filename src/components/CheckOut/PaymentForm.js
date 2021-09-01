@@ -19,7 +19,7 @@ export default function CheckoutForm({totalCost,cartItem,uid}) {
 
     // Create PaymentIntent as soon as the page loads
     window
-      .fetch("http://localhost:4242/create-payment-intent", {
+      .fetch("http://34.92.49.138:4242/create-payment-intent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
