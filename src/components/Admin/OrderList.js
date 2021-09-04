@@ -27,6 +27,7 @@ function OrderList(orderItem) {
 
     const updateorder = async (event) => {
         console.log(state.status)
+        console.log(state.tracking_number)
         event.preventDefault();
 
             const fd = new FormData();
@@ -113,14 +114,11 @@ function OrderList(orderItem) {
                                 <form onSubmit={updateorder}>
                                     <div className="mb-3">
                                         <label > Order Status </label>
-                                        <select class="form-select" aria-label="Default select example" name ="status"onChange={onChangeValue}>
+                                        <select class="form-select" aria-label="Default select example" name ="status" onChange={onChangeValue}>
                                             <option selected value={state2.status}>{state2.status}</option>
                                             <option value="Order Placed">Order Placed</option>
-                                            <option value="Paid">Paid</option>
-                                            <option value="Order Placed">Order Confirmed</option>
                                             <option value="Order Shipped Out">Order Shipped Out</option>
                                             <option value="Order Completed">Order Completed</option>
-                                            <option value="Unpaid">Unpaid</option>
                                             <option value="Cancelled">Cancelled</option>
                                             <option value="Order Returned">Order Returned</option>
                                         </select>
