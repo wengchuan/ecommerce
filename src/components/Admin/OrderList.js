@@ -11,9 +11,10 @@ function OrderList(orderItem) {
     useEffect(() => {
         setState(orderItem.orderItem[0])
         setState2(orderItem.orderItem[0])
-    }, []);
+      
+    }, [orderItem]);
 
- 
+
     const onChangeValue = (e) => {
         setState({
             ...state,
@@ -21,45 +22,45 @@ function OrderList(orderItem) {
 
 
         });
-
+        console.log(state.status)
     }
- 
+
 
     const updateorder = async (event) => {
-        
-        event.preventDefault();
 
-            const fd = new FormData();
-            fd.append('status', state.status);
-            fd.append('oid', state.oid);
-            fd.append('tracking_number',state.tracking_number);
-            
-            const update = await axios.post('http://34.92.49.138/ecommerce/updateorder.php',fd);
-       
-            if (update.data.success) {
-                Swal.fire({
-                    title: 'Product updated',
-                    text: "Product updated",
-                    type: 'success',
-    
-                });
-                setState2({
-                    ...state2,
-                    status:state.status,
-                    tracking_number:state.tracking_number
-                    
-                })
-            }
-            else {
-                Swal.fire({
-                    title: 'Failed',
-                    text: "Failed to update Product",
-                    type: 'error',
-    
-                });
-            }
-        
-       
+        event.preventDefault();
+        console.log(state.status)
+        const fd = new FormData();
+        fd.append('status', state.status);
+        fd.append('oid', state.oid);
+        fd.append('tracking_number', state.tracking_number);
+
+        const update = await axios.post('http://34.92.49.138/ecommerce/updateorder.php', fd);
+
+        if (update.data.success) {
+            Swal.fire({
+                title: 'Product updated',
+                text: "Product updated",
+                type: 'success',
+
+            });
+            setState2({
+                ...state2,
+                status: state.status,
+                tracking_number: state.tracking_number
+
+            })
+        }
+        else {
+            Swal.fire({
+                title: 'Failed',
+                text: "Failed to update Product",
+                type: 'error',
+
+            });
+        }
+
+
     }
     return (
         <div>
@@ -76,18 +77,18 @@ function OrderList(orderItem) {
                                         <EditIcon ></EditIcon>
                                     </IconButton>
                                 </Tooltip>
-                                <p>Order Status:{ state2.status} </p>
-                                <p>Tracking Number: { state2.tracking_number} </p>
+                                <p>Order Status:{state2.status} </p>
+                                <p>Tracking Number: {state2.tracking_number} </p>
                             </div>
                             <h4>Order ID: {orderItem.orderItem[0].oid} </h4>
                             <h4>User ID: {orderItem.orderItem[0].uid} </h4>
                             <p>User Name: {orderItem.orderItem[0].user_name} </p>
                             <p>User Email: {orderItem.orderItem[0].user_email} </p>
                             <p>User Phone Number: {orderItem.orderItem[0].user_phone} </p>
-                            <p>User Address: {orderItem.orderItem[0].user_address+","+orderItem.orderItem[0].user_zip+" "+orderItem.orderItem[0].user_city+","+orderItem.orderItem[0].user_state} </p>
+                            <p>User Address: {orderItem.orderItem[0].user_address + "," + orderItem.orderItem[0].user_zip + " " + orderItem.orderItem[0].user_city + "," + orderItem.orderItem[0].user_state} </p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <p>Order Time :{orderItem.orderItem[0].time} </p>
-                              
+
                             </div>
                             {orderItem.orderItem.map((orderItem) => (
 
@@ -113,22 +114,20 @@ function OrderList(orderItem) {
                                 <form onSubmit={updateorder}>
                                     <div className="mb-3">
                                         <label > Order Status </label>
-                                        <select class="form-select" aria-label="Default select example" name ="status"onChange={onChangeValue}>
+                                        <select class="form-select" aria-label="Default select example" name="status" onChange={onChangeValue}>
                                             <option selected value={state2.status}>{state2.status}</option>
+    
                                             <option value="Order Placed">Order Placed</option>
-                                            <option value="Paid">Paid</option>
-                                            <option value="Order Placed">Order Confirmed</option>
                                             <option value="Order Shipped Out">Order Shipped Out</option>
                                             <option value="Order Completed">Order Completed</option>
-                                            <option value="Unpaid">Unpaid</option>
                                             <option value="Cancelled">Cancelled</option>
                                             <option value="Order Returned">Order Returned</option>
                                         </select>
-                                     
+
                                     </div>
                                     <div className="mb-3">
                                         <label for="tracking_number" className="col-form-label">Tracking Number:</label>
-                                       <input type="text" className="form-control" id="tracking_number" name="tracking_number" value={state.tracking_number} onChange={onChangeValue} />
+                                        <input type="text" className="form-control" id="tracking_number" name="tracking_number" value={state.tracking_number} onChange={onChangeValue} />
                                     </div>
 
 

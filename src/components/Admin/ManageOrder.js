@@ -83,13 +83,10 @@ function ManageOrder() {
       <div className="d-flex flex-row bd-highlight mb-3 w-25">
         
         <select class="form-select " value={state.status} name="status" onChange={onChangeValue}>
-          <option selected value="">Sort by order status</option>
+        <option selected value="">Sort by order status</option>
           <option value="Order Placed">Order Placed</option>
-          <option value="Paid">Paid</option>
-          <option value="Order Confirmed">Order Confirmed</option>
           <option value="Order Shipped Out">Order Shipped Out</option>
           <option value="Order Completed">Order Completed</option>
-          <option value="Unpaid">Unpaid</option>
           <option value="Cancelled">Cancelled</option>
           <option value="Order Returned">Order Returned</option>
         </select>
