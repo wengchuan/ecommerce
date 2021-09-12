@@ -1,3 +1,4 @@
+
 <?php header('Access-Control-Allow-Origin: *'); ?>
 <?php 
 
@@ -12,4 +13,4 @@ if ($conn->connect_error) {
         $rows[] = $r;
     }
     print json_encode($rows); //convert php data to json data
- ?>
+?>

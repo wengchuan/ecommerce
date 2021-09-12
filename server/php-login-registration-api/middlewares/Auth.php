@@ -1,3 +1,4 @@
+
 <?php
 require __DIR__.'/../classes/JwtHandler.php';
 class Auth extends JwtHandler{
@@ -60,4 +61,5 @@ class Auth extends JwtHandler{
             return null;
         }
     }
+
 }
