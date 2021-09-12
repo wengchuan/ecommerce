@@ -1,3 +1,4 @@
+
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
@@ -96,5 +97,6 @@ else:
     endif;
 
 endif;
+
 
 echo json_encode($returnData);

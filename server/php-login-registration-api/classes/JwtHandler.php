@@ -1,3 +1,4 @@
+
 <?php
 require __DIR__.'/../jwt/JWT.php';
 require __DIR__.'/../jwt/ExpiredException.php';
@@ -82,4 +83,3 @@ class JwtHandler {
         }
 
     }
-}

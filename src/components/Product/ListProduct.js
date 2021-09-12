@@ -3,7 +3,7 @@ import React from 'react'
 import Product from './Product'
 import useStyles  from './ListProduct-style'
 
-const  ListProduct = ({ product }) => {
+const  ListProduct = ({ product, handleAddToCart }) => {
     const classes = useStyles();
     return (
         
@@ -12,7 +12,7 @@ const  ListProduct = ({ product }) => {
             <Grid container justify="center" spacing={3}>
                 {product.map((product)=>(
                 <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-                    <Product product={product} />
+                    <Product product={product} handleAddToCart={handleAddToCart} />
                 </Grid>))}
                 
             </Grid>

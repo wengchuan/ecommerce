@@ -1,3 +1,4 @@
+
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
@@ -23,5 +24,6 @@ if($auth->isAuth()){
     $returnData = $auth->isAuth();
    
 }
+
 
 echo json_encode($returnData);

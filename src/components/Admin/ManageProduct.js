@@ -1,7 +1,28 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import AdminListProduct from'./AdminListProduct'
+import { withRouter } from 'react-router';
 function ManageProduct() {
+    const [product, setProducts] = useState([]);
+    const [update,setUpdate]=useState([]);
+    
+    const fetchProducts = async () => {
+
+        axios.get('http://192.168.0.249/ecommerce/fetchproduct.php').then(res => {
+            setProducts(res.data);
+            setUpdate(res.data);
+        }
+        )
+
+    };
+    useEffect(() => {
+
+        fetchProducts();
+
+    }, []);
+
+
     const ref = useRef(null);
     const initialState = {
         productInfo: {
@@ -45,6 +66,7 @@ function ManageProduct() {
                 type: 'success',
 
             });
+            fetchProducts();
             resetForm();
         }
         );
@@ -58,11 +80,18 @@ function ManageProduct() {
     return (
         <div>
             <center> <h1>Manage Product</h1> </center>
+
+
+
+            {/* popup button  */}
             <div>
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductForm">
                     Add Product</button>
+            <br/>
+            
+            <AdminListProduct product={product} fetchProducts={fetchProducts} />
 
-
+            {/* popup page/modal*/}
                 <div className="modal fade" id="addProductForm" tabindex="-1" aria-labelledby="addProductForm" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -163,4 +192,4 @@ function ManageProduct() {
     )
 }
 
-export default ManageProduct
+export default withRouter(ManageProduct)

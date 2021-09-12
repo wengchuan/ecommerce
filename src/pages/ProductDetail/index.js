@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductCard from './ProductCard'
-function index() {
+function index({handleAddToCart}) {
     return (
         <div>
-            <ProductCard />
+            <ProductCard handleAddToCart={handleAddToCart} />
         </div>
     )
 }
